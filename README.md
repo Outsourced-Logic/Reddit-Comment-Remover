@@ -9,7 +9,7 @@ RCR runs a script in your browser that scrolls to the bottom of the user's comme
 
 <h1> Why RCR? / Why did you create RCR? </h1>
 
-It's simple! After deciding to start building a personal brand, I wanted to delete years of my Reddit comment history and use my account for business purposes, although I quickly realized that completing this task manually could take several hours. Searching the Chrome and Firefox webstores, I couldn't find a single extension that completed this task, so, I created RCR with help from GPT-4.
+It's simple! After deciding to start building a personal brand, I wanted to delete years of my Reddit comment history and use my account for business purposes, although I quickly realized that completing this task manually could take several hours, as I've had my account for several years and was active in multiple communities. Searching the Chrome and Firefox webstores, I couldn't find a single extension that completed this task, so, I created RCR with help from GPT-4.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
