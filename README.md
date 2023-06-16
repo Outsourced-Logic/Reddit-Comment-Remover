@@ -17,7 +17,7 @@ It's simple! After deciding to start building a personal brand, I wanted to dele
     
 Copyright 2023, Outsourced-Logic
    
-This file is part of "Reddit Comment Remover", an open-source browser extension that automatically deletes comment history from a user's personal profile. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
+This file is part of "Reddit Comment Remover", an open-source browser extension that automatically deletes comment history from a Reddit user's personal profile. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
   
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
 
