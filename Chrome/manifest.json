@@ -7,9 +7,9 @@
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "16": "rcr16.png",
-            "48": "rcr48.png",
-            "128": "rcr128.png"
+            "16": "RCR16.png",
+            "48": "RCR48.png",
+            "128": "RCR128.png"
         }
     },
     "background": {
