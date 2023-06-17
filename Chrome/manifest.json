@@ -1,1 +1,24 @@
-
+{
+    "manifest_version": 3,
+    "name": "RCR",
+    "version": "1.0.0",
+    "description": "RCR is an extension that automates certain button clicks for better accessibility.",
+    "permissions": ["scripting"],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "rcr16.png",
+            "48": "rcr48.png",
+            "128": "rcr128.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "16": "rcr16.png",
+        "48": "rcr48.png",
+        "128": "rcr128.png"
+    },
+    "host_permissions": ["https://www.reddit.com/*"]
+}
