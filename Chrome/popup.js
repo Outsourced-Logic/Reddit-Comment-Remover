@@ -1,3 +1,3 @@
-document.getElementById('toggleButton').addEventListener('click', () => {
-  chrome.runtime.sendMessage({message: 'toggle'});
+document.getElementById('toggleSwitch').addEventListener('change', (event) => {
+  chrome.runtime.sendMessage({message: 'toggle', data: event.target.checked});
 });
