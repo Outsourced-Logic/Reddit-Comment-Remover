@@ -2,11 +2,18 @@
 (() => {
   // Create a flag to enable/disable the extension
   let extensionEnabled = false;
-
-  // Create an interval to log a message to the console every 5 seconds
+  
+    // Create an interval to log a message to the console every 5 seconds
   setInterval(() => {
     console.log(extensionEnabled ? "RCR is busy deleting your comments.." : "RCR is disabled");
   }, 5000);
+
+  // Listen for messages from the popup script
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.message === 'toggle') {
+      extensionEnabled = !extensionEnabled;
+    }
+  });
 
   // Listen for messages from the popup script
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
