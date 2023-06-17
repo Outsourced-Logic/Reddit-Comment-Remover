@@ -2,7 +2,7 @@
 
 <h1> Developer notes: </h1>
 
-To use the early version of this extension, copy the code from "themainsqueeze.js", navigate to your reddit comment history, open the browsers developer console and enter the script.
+To use the early version of this extension, copy the code from "themainsqueeze.js", navigate to your reddit comment history, open the browsers developer console and enter the code into the console.
 
 The extension is not functional at this time.
 
