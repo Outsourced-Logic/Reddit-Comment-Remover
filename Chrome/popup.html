@@ -2,45 +2,45 @@
 <html>
 <head>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
-
         body {
-            background-color: white;
-            font-family: 'IBM Plex Sans', sans-serif;
-            color: black;
+            font-family: Arial, sans-serif;
             text-align: center;
-            padding: 0;
-            margin: 0;
-        }
-
-        #logo {
-            width: 70px;
-            height: 70px;
+            background: white;
+            color: black;
+            width: 300px;
         }
 
         #title {
+            margin-top: 10px;
             font-size: 30px;
             font-weight: bold;
-            margin: 15px 0;
             color: #FF4500;
         }
 
         .navbar {
             display: flex;
             justify-content: center;
-            list-style-type: none;
-            padding: 10px 0;
             margin-bottom: 20px;
         }
 
-        .navbar li {
-            margin: 0 15px;
+        .tab {
             cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
         }
 
-        .navbar .active {
+        .tab.active {
             color: #FF4500;
             font-weight: bold;
+            border-bottom: 2px solid #FF4500;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
         }
 
         .switch {
@@ -48,7 +48,7 @@
             display: inline-block;
             width: 60px;
             height: 34px;
-            vertical-align: middle;
+            margin-left: 10px;
         }
 
         .switch input {
@@ -57,42 +57,78 @@
             height: 0;
         }
 
-        /* ... rest of your switch CSS ... */
-
-        #status {
-            display: inline-block;
-            margin-right: 10px;
-            vertical-align: middle;
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
         }
 
-        /* New: CSS for pages */
-        .page {
-            display: none;
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
         }
 
-        .page.active {
-            display: block;
+        input:checked + .slider {
+            background-color: #FF4500;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #FF4500;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        .control-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-    <img id="logo" src="RCR128.png" alt="Logo">
     <div id="title">R.C.R.</div>
-    <ul class="navbar">
-        <li id="home-tab" class="active">Home</li>
-        <li id="settings-tab">Settings</li>
-    </ul>
-    <div id="home" class="page active" style="padding: 20px;">
-        <label id="status" for="toggle"></label>
-        <label class="switch">
-            <input id="toggle" type="checkbox">
-            <span class="slider round"></span>
-        </label>
+    <div class="navbar">
+        <span class="tab active" id="home-tab">Home</span> 
+        <span class="tab" id="settings-tab">Settings</span>
     </div>
-    <div id="settings" class="page">
-        <p>Settings page content goes here.</p>
+    <div class="content active" id="home">
+        <div class="control-section">
+            <label id="status" for="toggle"></label>
+            <label class="switch">
+                <input id="toggle" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </div>
-
+    <div class="content" id="settings">
+        Settings page coming soon...
+    </div>
     <script src="popup.js"></script>
 </body>
 </html>
