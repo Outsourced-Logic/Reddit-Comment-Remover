@@ -2,17 +2,39 @@
 <html>
 <head>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
         body {
             background-color: #FF4500;
-            font-family: Arial, sans-serif;
+            font-family: 'IBM Plex Sans', sans-serif;
             color: white;
             text-align: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        #logo {
+            width: 70px;
+            height: 70px;
         }
 
         #title {
-            margin-top: 10px;
             font-size: 30px;
             font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+            cursor: pointer;
         }
 
         .switch {
@@ -20,6 +42,7 @@
             display: inline-block;
             width: 60px;
             height: 34px;
+            vertical-align: middle;
         }
 
         .switch input {
@@ -28,69 +51,32 @@
             height: 0;
         }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
+        /* ... rest of your switch CSS ... */
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
+        /* Update: Place status to the left of the slider */
+        #status {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <!-- add your image here -->
-    <div style="text-align:center;">
-        <img src="RCR128.png" alt="Logo" style="width:100px;height:100px;">
-    </div>
-
+    <img id="logo" src="RCR128.png" alt="Logo">
     <div id="title">R.C.R.</div>
+    <!-- New: Navigation bar -->
+    <ul class="navbar">
+        <li>Home</li>
+        <li>Settings</li>
+        <!-- Add more tabs as needed -->
+    </ul>
     <div style="padding: 20px;">
+        <!-- Update: The label now is to the left of the switch -->
+        <label id="status" for="toggle"></label>
         <label class="switch">
             <input id="toggle" type="checkbox">
             <span class="slider round"></span>
         </label>
-        <br/>
-        <!-- Update: The label now changes between 'enabled' and 'disabled' -->
-        <label id="status" for="toggle"></label>
     </div>
 
     <script src="popup.js"></script>
