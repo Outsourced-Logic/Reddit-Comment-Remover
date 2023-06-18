@@ -9,10 +9,6 @@ The extension has not been uploaded to webstores for review
 <h1> Want to delete your Reddit comment history? Look no further.</h1>
 Reddit Comment Remover (RCR) automates the process of deleting your comment history on Reddit by running a simple script in your browsers developer console. Just navigate to your comment history, turn on the extension and let it run.
 
-<h1> What does RCR do? </h1>
-
-RCR runs a script in your browser that scrolls to the bottom of the user's comment history, then interacts with buttons to simulate the user deleting their comment manually. RCR then repeats this action until all instances of comments are deleted.
-
 <h1> Why RCR? / Why did you create RCR? </h1>
 
 It's simple! After deciding to start building a personal brand, I wanted to delete years of my Reddit comment history and use my account for business purposes, although I quickly realized that completing this task manually could take several hours, as I've had my account for several years and was active in multiple communities. Searching the Chrome and Firefox webstores, I couldn't find a single extension that completed this task, so, I created RCR with help from GPT-4.
