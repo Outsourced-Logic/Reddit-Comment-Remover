@@ -19,5 +19,5 @@
     "48": "RCR48.png",
     "128": "RCR128.png"
   },
-  "host_permissions": ["https://www.reddit.com/*"]
+  "host_permissions": ["https://www.reddit.com/user/*/comments/"]
 }
