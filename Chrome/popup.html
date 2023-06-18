@@ -1,55 +1,108 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <label class="switch">
-      <input type="checkbox" id="toggleSwitch">
-      <span class="slider round"></span>
-    </label>
+<head>
     <style>
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-      }
-      .switch input { 
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: .4s;
-      }
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: .4s;
-      }
-      input:checked + .slider {
-        background-color: #2196F3;
-      }
-      input:checked + .slider:before {
-        transform: translateX(26px);
-      }
-      .slider.round {
-        border-radius: 34px;
-      }
-      .slider.round:before {
-        border-radius: 50%;
-      }
+        /* Styles for the body of the popup */
+        body {
+            background-color: #FF4500;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        /* Styles for the title of the popup */
+        #title {
+            margin-top: 10px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* Styles for the switch (the toggle control) */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hides the checkbox input that is used to create the switch */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Styles for the visual part of the switch (the "slider") */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        /* Styles for the inner part of the slider (before it's checked) */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        /* Changes the slider's color when checked */
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        /* Adds a focus outline to the slider */
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        /* Moves the inner part of the slider when it's checked */
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Makes the slider round */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        /* Makes the inner part of the slider round */
+        .slider.round:before {
+            border-radius: 50%;
+        }
     </style>
+</head>
+<body>
+    <!-- The title of the popup -->
+    <div id="title">R.C.R.</div>
+
+    <!-- The switch (toggle control) -->
+    <div style="padding: 20px;">
+        <!-- The actual checkbox input that controls the switch -->
+        <label class="switch">
+            <input id="toggle" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <br/>
+        <!-- Label for the checkbox input -->
+        <label for="toggle">Start Deleting</label>
+    </div>
+
+    <!-- Script that adds functionality to the switch -->
     <script src="popup.js"></script>
-  </body>
+</body>
 </html>
