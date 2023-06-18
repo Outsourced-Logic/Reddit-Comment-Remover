@@ -5,9 +5,9 @@
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
 
         body {
-            background-color: #FF4500;
+            background-color: white;
             font-family: 'IBM Plex Sans', sans-serif;
-            color: white;
+            color: black;
             text-align: center;
             padding: 0;
             margin: 0;
@@ -22,6 +22,7 @@
             font-size: 30px;
             font-weight: bold;
             margin: 15px 0;
+            color: #FF4500;
         }
 
         .navbar {
@@ -35,6 +36,11 @@
         .navbar li {
             margin: 0 15px;
             cursor: pointer;
+        }
+
+        .navbar .active {
+            color: #FF4500;
+            font-weight: bold;
         }
 
         .switch {
@@ -53,30 +59,38 @@
 
         /* ... rest of your switch CSS ... */
 
-        /* Update: Place status to the left of the slider */
         #status {
             display: inline-block;
             margin-right: 10px;
             vertical-align: middle;
+        }
+
+        /* New: CSS for pages */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
     </style>
 </head>
 <body>
     <img id="logo" src="RCR128.png" alt="Logo">
     <div id="title">R.C.R.</div>
-    <!-- New: Navigation bar -->
     <ul class="navbar">
-        <li>Home</li>
-        <li>Settings</li>
-        <!-- Add more tabs as needed -->
+        <li id="home-tab" class="active">Home</li>
+        <li id="settings-tab">Settings</li>
     </ul>
-    <div style="padding: 20px;">
-        <!-- Update: The label now is to the left of the switch -->
+    <div id="home" class="page active" style="padding: 20px;">
         <label id="status" for="toggle"></label>
         <label class="switch">
             <input id="toggle" type="checkbox">
             <span class="slider round"></span>
         </label>
+    </div>
+    <div id="settings" class="page">
+        <p>Settings page content goes here.</p>
     </div>
 
     <script src="popup.js"></script>
