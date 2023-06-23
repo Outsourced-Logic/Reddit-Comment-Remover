@@ -1,3 +1,10 @@
+// Check if the user is on the right page, if not, stop the script
+if (!window.location.href.includes('/comments/')) {
+  // We are not on the comments page, so stop the script
+  console.log("Not on comments page, stopping script");
+  return;
+}
+
 // A function to sleep in milliseconds
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
