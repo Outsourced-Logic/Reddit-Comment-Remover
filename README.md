@@ -2,9 +2,11 @@
 
 <h1> Developer notes: </h1>
 
-To use the early version of this extension, copy the code from "themainsqueeze.js", navigate to your reddit comment history, open the browsers developer console and enter the code into the console.
+Uploading to Chrome Webstore soon
 
-The extension has not been uploaded to webstores for review
+Working on Firefox functionality
+
+More features coming soon!
 
 <h1> Want to delete your Reddit comment history? Look no further.</h1>
 Reddit Comment Remover (RCR) automates the process of deleting your comment history on Reddit by running a simple script in your browsers developer console. Just navigate to your comment history, turn on the extension and let it run.
