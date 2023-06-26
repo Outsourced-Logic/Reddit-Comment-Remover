@@ -60,5 +60,23 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       sendResponse({ whitelist: data.whitelist || [] });
     });
     return true; // this is necessary to make asynchronous response
+  } else if (request.message === "remove_from_whitelist") {
+    let subreddit = request.subreddit;
+
+    // Fetch the whitelist from storage
+    chrome.storage.local.get("whitelist", function (data) {
+      let whitelist = data.whitelist || [];
+
+      let index = whitelist.indexOf(subreddit);
+      if (index !== -1) {
+        // Remove the subreddit from the whitelist and save it back to the storage
+        whitelist.splice(index, 1);
+        chrome.storage.local.set({ whitelist: whitelist }, function () {
+          console.log(`Removed ${subreddit} from whitelist.`);
+        });
+      } else {
+        console.log(`Subreddit ${subreddit} is not in the whitelist.`);
+      }
+    });
   }
 });
