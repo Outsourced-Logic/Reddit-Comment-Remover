@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- All your existing CSS styling here -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -122,6 +121,10 @@
         #status {
             font-size: 16px;
         }
+
+        #whitelistTable, #whitelistInput, #whitelistAddButton {
+            margin: 5px auto;
+        }
     </style>
 </head>
 <body>
@@ -130,7 +133,7 @@
     <div class="navbar">
         <span class="tab active" id="home-tab">Home</span> 
         <span class="tab" id="settings-tab">Settings</span>
-        <span class="tab" id="whitelist-tab">Whitelist</span> <!-- Adding a new Whitelist tab -->
+        <span class="tab" id="whitelist-tab">Whitelist</span> 
     </div>
     <div class="content active" id="home">
         <div class="control-section">
@@ -144,12 +147,11 @@
     <div class="content" id="settings">
         Settings content goes here.
     </div>
-    <div class="content" id="whitelist"> <!-- Adding a new Whitelist content section -->
+    <div class="content" id="whitelist">
         <div id="whitelistTable"></div>
         <input type="text" id="whitelistInput" placeholder="Enter subreddit name (e.g., r/funny)">
         <button id="whitelistAddButton">Add to Whitelist</button>
     </div>
     <script src="popup.js"></script>
-    <script src="whitelist.js"></script> <!-- Include the whitelist.js script -->
 </body>
 </html>
