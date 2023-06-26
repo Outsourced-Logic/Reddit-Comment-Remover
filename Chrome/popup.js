@@ -6,8 +6,11 @@ function updateStatusText() {
 }
 
 function updateWhitelist() {
-  chrome.runtime.sendMessage({ message: 'getWhitelist' }, function(response) {
-    document.querySelector('#whitelistTable').textContent = response.whitelist.join(', ');
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage({ message: 'getWhitelist' }, function(response) {
+      document.querySelector('#whitelistTable').textContent = response.whitelist.join(', ');
+      resolve();
+    });
   });
 }
 
@@ -15,8 +18,9 @@ function addSubreddit(event) {
   event.preventDefault();
   const subreddit = document.querySelector('#whitelistInput').value;
   chrome.runtime.sendMessage({ message: 'addSubreddit', subreddit: subreddit }, function(response) {
-    updateWhitelist();
-    document.querySelector('#whitelistInput').value = '';
+    updateWhitelist().then(() => {
+      document.querySelector('#whitelistInput').value = '';
+    });
   });
 }
 
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const whitelistAddButton = document.querySelector('#whitelistAddButton');
   whitelistAddButton.addEventListener('click', addSubreddit);
 
-  updateStatusText();
-  updateWhitelist();
+  updateWhitelist().then(() => {
+    updateStatusText();
+  });
 });
