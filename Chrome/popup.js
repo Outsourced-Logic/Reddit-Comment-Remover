@@ -7,25 +7,16 @@ function updateStatusText() {
 
 function updateWhitelist() {
   chrome.runtime.sendMessage({ message: 'getWhitelist' }, function(response) {
-    document.querySelector('#whitelist').textContent = response.whitelist.join(', ');
+    document.querySelector('#whitelistTable').textContent = response.whitelist.join(', ');
   });
 }
 
 function addSubreddit(event) {
   event.preventDefault();
-  const subreddit = document.querySelector('#subreddit').value;
+  const subreddit = document.querySelector('#whitelistInput').value;
   chrome.runtime.sendMessage({ message: 'addSubreddit', subreddit: subreddit }, function(response) {
     updateWhitelist();
-    document.querySelector('#subreddit').value = '';
-  });
-}
-
-function removeSubreddit(event) {
-  event.preventDefault();
-  const subreddit = document.querySelector('#subredditRemove').value;
-  chrome.runtime.sendMessage({ message: 'removeSubreddit', subreddit: subreddit }, function(response) {
-    updateWhitelist();
-    document.querySelector('#subredditRemove').value = '';
+    document.querySelector('#whitelistInput').value = '';
   });
 }
 
@@ -34,13 +25,24 @@ function switchTabs(event) {
   if (target.matches('#home-tab')) {
     document.querySelector('#home').classList.add('active');
     document.querySelector('#settings').classList.remove('active');
+    document.querySelector('#whitelist').classList.remove('active');
     target.classList.add('active');
     document.querySelector('#settings-tab').classList.remove('active');
+    document.querySelector('#whitelist-tab').classList.remove('active');
   } else if (target.matches('#settings-tab')) {
     document.querySelector('#settings').classList.add('active');
     document.querySelector('#home').classList.remove('active');
+    document.querySelector('#whitelist').classList.remove('active');
     target.classList.add('active');
     document.querySelector('#home-tab').classList.remove('active');
+    document.querySelector('#whitelist-tab').classList.remove('active');
+  } else if (target.matches('#whitelist-tab')) {
+    document.querySelector('#whitelist').classList.add('active');
+    document.querySelector('#home').classList.remove('active');
+    document.querySelector('#settings').classList.remove('active');
+    target.classList.add('active');
+    document.querySelector('#home-tab').classList.remove('active');
+    document.querySelector('#settings-tab').classList.remove('active');
   }
 }
 
@@ -54,11 +56,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   document.querySelector('.navbar').addEventListener('click', switchTabs);
 
-  const addForm = document.querySelector('#addForm');
-  addForm.addEventListener('submit', addSubreddit);
-
-  const removeForm = document.querySelector('#removeForm');
-  removeForm.addEventListener('submit', removeSubreddit);
+  const whitelistAddButton = document.querySelector('#whitelistAddButton');
+  whitelistAddButton.addEventListener('click', addSubreddit);
 
   updateStatusText();
   updateWhitelist();
