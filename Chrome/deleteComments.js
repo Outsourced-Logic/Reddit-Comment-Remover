@@ -1,51 +1,63 @@
-(function() {
-  if (!window.location.href.includes('/comments/')) {
-    console.log("Not on comments page, stopping script");
-    return;
-  }
+// A function to sleep in milliseconds
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+// The function to find and click the buttons
+async function deleteComment(comment) {
+  // Simulate a click event on the "more options" button
+  let moreOptionsButton = comment.querySelector("button[aria-label='more options']");
+  if (moreOptionsButton) {
+    moreOptionsButton.click();
 
-  async function deleteComments() {
-    console.log('deleteComments function started');
+    // Wait for the DOM to update
+    await sleep(100); // this can be adjusted based on how long it takes for the DOM to update
 
-    const menuButtons = document.querySelectorAll("button[aria-label='more options']");
-    console.log('Found', menuButtons.length, 'menu buttons');
+    // Click the delete button in the dropdown menu
+    let deleteButton = Array.from(comment.querySelectorAll("button[role='menuitem']"))
+      .find(button => button.textContent.includes("delete"));
+    if (deleteButton) {
+      deleteButton.click();
 
-    for (let button of menuButtons) {
-      button.click();
-      await sleep(1000);
+      // Wait for the DOM to update
+      await sleep(100); // this can be adjusted based on how long it takes for the DOM to update
 
-      const deleteButtons = document.querySelectorAll("button[role='menuitem']");
-      console.log('Found', deleteButtons.length, 'delete buttons');
+      // Click the confirmation delete button
+      let confirmDeleteButton = Array.from(document.querySelectorAll("button._17UyTSs2atqnKg9dIq5ERg"))
+        .find(button => button.textContent.includes("Delete"));
+      if (confirmDeleteButton) {
+        confirmDeleteButton.click();
 
-      for (let deleteButton of deleteButtons) {
-        if (deleteButton.textContent.includes("delete")) {
-          deleteButton.click();
-          break;
-        }
+        // Wait for the DOM to update
+        await sleep(100); // this can be adjusted based on how long it takes for the DOM to update
       }
-
-      await sleep(1000);
-
-      const confirmDeleteButtons = document.querySelectorAll("button._17UyTSs2atqnKg9dIq5ERg");
-      console.log('Found', confirmDeleteButtons.length, 'confirm delete buttons');
-
-      for (let confirmDeleteButton of confirmDeleteButtons) {
-        if (confirmDeleteButton.textContent.includes("Delete")) {
-          confirmDeleteButton.click();
-          break;
-        }
-      }
-
-      await sleep(1000);
     }
-
-    console.log('deleteComments function ended');
   }
+}
 
-  console.log('Starting deletion process');
-  deleteComments();
-})();
+async function deleteComments() {
+  let comments = document.querySelectorAll('.Comment');
+  
+  for (let comment of comments) {
+    let subredditElement = comment.querySelector('a[data-click-id="subreddit"]');
+    if (subredditElement) {
+      let subreddit = subredditElement.textContent;
+      await new Promise((resolve) => {
+        chrome.runtime.sendMessage({ message: 'checkWhitelist', subreddit: subreddit }, function(response) {
+          if (!response.isWhitelisted) {
+            // delete the comment here
+            deleteComment(comment).then(resolve);
+          } else {
+            resolve();
+          }
+        });
+      });
+    }
+  }
+}
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "toggle") {
+    deleteComments();
+  }
+});
