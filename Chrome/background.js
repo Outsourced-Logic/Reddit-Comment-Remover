@@ -4,7 +4,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       let tab = tabs[0];
       console.log(`Received toggle command for tabId: ${tab.id}`);
 
-      let subreddit = tab.url.match(/reddit.com\/r\/([^/]*)/)[1];
+      let match = tab.url.match(/reddit.com\/r\/([^/]*)/);
+      if (!match) {
+        console.log('No subreddit found in the current URL.');
+        return;
+      }
+
+      let subreddit = match[1];
 
       // Fetch the whitelist from storage
       chrome.storage.local.get("whitelist", function (data) {
